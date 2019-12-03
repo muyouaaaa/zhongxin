@@ -16,7 +16,6 @@ CREATE TABLE `user` (
 DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
   `goods_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '商品id',
-  `category_id` int(11) NOT NULL COMMENT '分类id',
   `name` varchar(100) NOT NULL COMMENT '商品名称',
   `productor`  varchar(100) NOT NULL COMMENT '供应商',
   `detail` text COMMENT '商品详情',
@@ -46,7 +45,7 @@ CREATE TABLE `order` (
   `username` varchar(50) NOT NULL COMMENT '用户名',
   `goods_id` int(11) NOT NULL COMMENT '产品id',
   `referrer_id` int(11) DEFAULT NULL COMMENT '推荐码',
-  `payment` decimal(20,2) DEFAULT NULL COMMENT '实际付款金额,单位是元,保留两位小数',
+  `payment` decimal(20,2) DEFAULT NULL COMMENT '实际付款金额,单位为元,保留两位小数',
   `payment_time` datetime DEFAULT NULL COMMENT '支付时间',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
