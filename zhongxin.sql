@@ -35,6 +35,7 @@ CREATE TABLE `employee` (
   `employeename` varchar(50) NOT NULL COMMENT '员工名',
   `performance` decimal(20,2)  DEFAULT NULL COMMENT '员工业绩',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=118 DEFAULT CHARSET=utf8;
 
