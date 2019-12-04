@@ -5,6 +5,7 @@ CREATE TABLE `user` (
   `password` varchar(50) NOT NULL COMMENT '用户密码，MD5加密',
   `realname` varchar(50) DEFAULT  NULL COMMENT  '用户真实姓名',
   `id_card` int(20) DEFAULT NULL COMMENT '用户身份证号码',
+  image longblob DEFAULT NULL COMMENT '用户图片',
   `phone` varchar(20) DEFAULT NULL,
   `role` int(4) NOT NULL COMMENT '角色0-管理员,1-普通用户',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
