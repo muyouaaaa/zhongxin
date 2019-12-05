@@ -38,6 +38,24 @@ CREATE TABLE `employee` (
   PRIMARY KEY (`employee_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=118 DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `shipping`;
+CREATE TABLE `shipping` (
+`shipping_id` int(11) NOT NULL AUTO_INCREMENT,
+`user_id` int(11) DEFAULT NULL COMMENT '用户id',
+`receiver_name` varchar(20) DEFAULT NULL COMMENT '收货姓名',
+`receiver_phone` varchar(20) DEFAULT NULL COMMENT '收货固定电话',
+`receiver_mobile` varchar(20) DEFAULT NULL COMMENT '收货移动电话',
+`receiver_province` varchar(20) DEFAULT NULL COMMENT '省份',
+`receiver_city` varchar(20) DEFAULT NULL COMMENT '城市',
+`receiver_district` varchar(20) DEFAULT NULL COMMENT '区/县',
+`receiver_address` varchar(200) DEFAULT NULL COMMENT '详细地址',
+`receiver_zip` varchar(6) DEFAULT NULL COMMENT '邮编',
+`create_time` datetime DEFAULT NULL,
+`update_time` datetime DEFAULT NULL,
+PRIMARY KEY (`shipping_id`),
+constraint FK_user foreign key (user_id) references user(user_id) on delete cascade on update cascade
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
+
 DROP TABLE IF EXISTS `order`;
 CREATE TABLE `order` (
   `order_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '订单id',
@@ -45,6 +63,7 @@ CREATE TABLE `order` (
   `user_id` int(11) NOT NULL COMMENT '用户id',
   `goods_id` int(11) NOT NULL COMMENT '产品id',
   `referrer_id` int(11) DEFAULT NULL COMMENT '推荐码',
+  `shipping_id` int(11) DEFAULT NULL COMMENT '收货地址',
   `payment` decimal(20,2) DEFAULT NULL COMMENT '实际付款金额,单位为元,保留两位小数',
   `payment_time` datetime DEFAULT NULL COMMENT '支付时间',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
@@ -52,7 +71,6 @@ CREATE TABLE `order` (
   PRIMARY KEY (`order_id`),
   UNIQUE KEY `order_no_index` (`order_no`) USING BTREE,
   constraint FK_user foreign key (user_id) references user(user_id) on delete cascade on update cascade,
-  constraint FK_goods foreign key (goods_id) references product(goods_id) on delete cascade on update cascade,
-  constraint FK_employee foreign key (referrer_id) references employee(employee_id) on delete cascade on update cascade
+  constraint FK_goods foreign key (goods_id) references product(goods_id) on delete cascade on update cascade
 ) ENGINE=InnoDB AUTO_INCREMENT=118 DEFAULT CHARSET=utf8;
 
